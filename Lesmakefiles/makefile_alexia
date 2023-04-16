@@ -1,0 +1,13 @@
+CC=/usr/bin/clang
+LDFLAGS=-L/lib
+CPPFLAGS=-I/include
+CFLAGS=-std=c99 -Wall -Wextra -pedantic -fdiagnostics-color=always
+CFLAGS+=$(CPPFLAGS) -O0 -g3 -Qunused-arguments # -DNDEBUG
+
+ftc: ftc.o list_of_files.o util.o 
+ftc.o: ftc.c list_of_files.h util.h ftc.h
+list_of_files.o: list_of_files.c list_of_files.h util.h
+util.o: util.c util.h
+
+clean:
+rm -f *.o
